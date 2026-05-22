@@ -46,28 +46,27 @@ CortexNexus 解决这个问题。
 ## 🏗️ Architecture / 架构
 
 ```mermaid
-graph TD
-    subgraph "🧠 Memory Engine"
-        H[Hermes / Future Engine]
+graph LR
+    subgraph "📱 Device A"
+        CT1[💬 Conversation Tool<br/>Claude Code / Gemini / Codex]
+        ME1[🧠 Memory Engine<br/>Hermes]
+        CT1 -->|writes notes| ME1
+        ME1 -->|provides summary| CT1
     end
 
-    subgraph "📱 Device A"
-        CA[Claude Code + Hermes]
+    subgraph "📦 Git Bridge"
+        G[(GitHub<br/>Shared Repo)]
     end
 
     subgraph "💻 Device B"
-        GB[Gemini CLI + Hermes]
+        CT2[💬 Conversation Tool<br/>Claude Code / Gemini / Codex]
+        ME2[🧠 Memory Engine<br/>Hermes]
+        CT2 -->|writes notes| ME2
+        ME2 -->|provides summary| CT2
     end
 
-    subgraph "🖥️ Device C"
-        CX[Codex + Hermes]
-    end
-
-    H <-->|git sync| CA
-    H <-->|git sync| GB
-    H <-->|git sync| CX
-    CA <-->|git sync| GB
-    GB <-->|git sync| CX
+    ME1 <-->|upload / download| G
+    G <-->|upload / download| ME2
 ```
 
 ### 🎯 Core Roles / 核心角色
