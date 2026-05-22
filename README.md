@@ -85,19 +85,23 @@ graph LR
         CE["Codex"]
     end
 
-    %% Left devices → Hermes (upload)
+    %% Left: devices ↔ Hermes (bidirectional)
     LA -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LA
     LB -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LB
     LC -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LC
 
-    %% Left Hermes → Git (upload)
+    %% Left: Hermes ↔ Git (bidirectional)
     HL -->|"⬆️ upload"| G
+    G -->|"⬇️ download"| HL
 
-    %% Git ↔ Right Hermes
+    %% Center: Git ↔ Right Hermes (bidirectional)
     G -->|"⬇️ download"| HR
     HR -->|"⬆️ upload"| G
 
-    %% Right Hermes ↔ devices
+    %% Right: Hermes ↔ devices (bidirectional)
     HR -->|"⬇️ download"| RA
     RA -->|"⬆️ upload"| HR
     HR -->|"⬇️ download"| RB
