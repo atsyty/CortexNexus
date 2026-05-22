@@ -70,17 +70,6 @@ graph TD
     HA <-->|git sync| G
     HB <-->|git sync| G
     HC <-->|git sync| G
-
-    classDef tools fill:#e3f2fd,stroke:#1565c0,color:#000
-    classDef engine fill:#fff3e0,stroke:#e65100,color:#000
-    classDef git fill:#fce4ec,stroke:#b71c1c,color:#000
-    class TA,TB,TC tools
-    class HA,HB,HC engine
-    class G git
-```
-    class CA,GA,CX,OA,CB,GB,CC,GC,CD,GD,OD,CE tools
-    class HL,HR engine
-    class G git
 ```
 
 ### 🎯 Core Roles / 核心角色
