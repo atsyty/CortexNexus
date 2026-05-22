@@ -46,73 +46,29 @@ CortexNexus 解决这个问题。
 ## 🏗️ Architecture / 架构
 
 ```mermaid
-graph LR
-    subgraph LA["📱 Home"]
-        direction TB
-        CA["Claude Code"]
-        GA["Gemini CLI"]
-    end
-    subgraph LB["💻 Office"]
-        direction TB
-        CX["Codex"]
-        OA["OpenCode"]
-    end
-    subgraph LC["🖥️ Laptop"]
-        direction TB
-        CB["Claude Code"]
-        GB["Gemini CLI"]
+graph TD
+    subgraph "🧠 Memory Engine"
+        H[Hermes / Future Engine]
     end
 
-    HL["🧠 Hermes"]
-
-    G[("📦 Git Shared Repo")]
-
-    HR["🧠 Hermes"]
-
-    subgraph RA["🖥️ Laptop"]
-        direction TB
-        CC["Claude Code"]
-        GC["Gemini CLI"]
-    end
-    subgraph RB["📱 Home"]
-        direction TB
-        CD["Claude Code"]
-        GD["Gemini CLI"]
-    end
-    subgraph RC["💻 Office"]
-        direction TB
-        OD["OpenCode"]
-        CE["Codex"]
+    subgraph "📱 Device A"
+        CA[Claude Code + Hermes]
     end
 
-    %% Left: devices ↔ Hermes (bidirectional)
-    LA -->|"⬆️ upload"| HL
-    HL -->|"⬇️ download"| LA
-    LB -->|"⬆️ upload"| HL
-    HL -->|"⬇️ download"| LB
-    LC -->|"⬆️ upload"| HL
-    HL -->|"⬇️ download"| LC
+    subgraph "💻 Device B"
+        GB[Gemini CLI + Hermes]
+    end
 
-    %% Left: Hermes ↔ Git (bidirectional)
-    HL -->|"⬆️ upload"| G
-    G -->|"⬇️ download"| HL
+    subgraph "🖥️ Device C"
+        CX[Codex + Hermes]
+    end
 
-    %% Center: Git ↔ Right Hermes (bidirectional)
-    G -->|"⬇️ download"| HR
-    HR -->|"⬆️ upload"| G
-
-    %% Right: Hermes ↔ devices (bidirectional)
-    HR -->|"⬇️ download"| RA
-    RA -->|"⬆️ upload"| HR
-    HR -->|"⬇️ download"| RB
-    RB -->|"⬆️ upload"| HR
-    HR -->|"⬇️ download"| RC
-    RC -->|"⬆️ upload"| HR
-
-    %% Styling
-    classDef tools fill:#e3f2fd,stroke:#1565c0,color:#000
-    classDef engine fill:#fff3e0,stroke:#e65100,color:#000
-    classDef git fill:#fce4ec,stroke:#b71c1c,color:#000
+    H <-->|git sync| CA
+    H <-->|git sync| GB
+    H <-->|git sync| CX
+    CA <-->|git sync| GB
+    GB <-->|git sync| CX
+```
     class CA,GA,CX,OA,CB,GB,CC,GC,CD,GD,OD,CE tools
     class HL,HR engine
     class G git
