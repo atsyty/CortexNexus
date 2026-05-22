@@ -46,21 +46,19 @@ CortexNexus 解决这个问题。
 ## 🏗️ Architecture / 架构
 
 ```mermaid
-graph LR
+graph TD
     subgraph "📱 Device A"
-        CT1[💬 Conversation Tool<br/>Claude Code / Gemini / Codex]
-        ME1[🧠 Memory Engine<br/>Hermes]
+        CT1["💬 Conversation Tool<br/>Claude Code / Gemini / Codex"]
+        ME1["🧠 Memory Engine — Hermes"]
         CT1 -->|writes notes| ME1
         ME1 -->|provides summary| CT1
     end
 
-    subgraph "📦 Git Bridge"
-        G[(GitHub<br/>Shared Repo)]
-    end
+    G[("📦 GitHub Shared Repo")]
 
     subgraph "💻 Device B"
-        CT2[💬 Conversation Tool<br/>Claude Code / Gemini / Codex]
-        ME2[🧠 Memory Engine<br/>Hermes]
+        CT2["💬 Conversation Tool<br/>Claude Code / Gemini / Codex"]
+        ME2["🧠 Memory Engine — Hermes"]
         CT2 -->|writes notes| ME2
         ME2 -->|provides summary| CT2
     end
