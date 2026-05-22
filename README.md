@@ -17,7 +17,7 @@ You use Claude Code on your laptop, Gemini on your desktop, and Codex on your wo
 
 CortexNexus fixes that.
 
-It gives every AI tool on every device a shared memory — a single source of truth about who you are. The memory engine (currently [Hermes](https://github.com/nicepkg/aide)) compresses and maintains it. Your AI tools read it. You trigger sync when you want. No automation, no schedules, no leaks.
+It gives every AI tool on every device a shared memory and a shared skill inventory — a single source of truth about who you are and what you can do. The memory engine (currently [Hermes](https://github.com/nicepkg/aide)) compresses and maintains it. Your AI tools read it. You trigger sync when you want. No automation, no schedules, no leaks.
 
 ```
 You: "Upload memory"   → AI writes notes   → memory engine compresses → git push
@@ -32,7 +32,7 @@ You: "Download memory" → memory engine pulls & compresses → AI reads summary
 
 CortexNexus 解决这个问题。
 
-它给所有设备上的所有 AI 工具提供一份共享记忆——一份关于"你是谁"的唯一真相。记忆引擎（目前推荐 [Hermes](https://github.com/nicepkg/aide)）负责压缩和维护。你的 AI 工具负责读取。你决定什么时候同步。没有自动化、没有定时任务、没有信息泄漏。
+它给所有设备上的所有 AI 工具提供一份共享记忆和一份共享技能清单——一份关于"你是谁"和"你能做什么"的唯一真相。记忆引擎（目前推荐 [Hermes](https://github.com/nicepkg/aide)）负责压缩和维护。你的 AI 工具负责读取。你决定什么时候同步。没有自动化、没有定时任务、没有信息泄漏。
 
 ```
 你说"上传记忆"   → AI 写笔记   → 记忆引擎压缩 → git push
@@ -86,7 +86,18 @@ graph TD
 - **📁 Files are the bridge** — all tools exchange information through a shared Git repo
 - **⚡ Two operations** — "Upload Memory" and "Download Memory", user-triggered, no automation
 - **📚 Dual-layer memory** — short-term (overwritten) + long-term archive (append-only)
+- **🛠️ Skills sync** — each tool documents its MCP servers, plugins, and configs; other tools can discover what's available across devices
 - **🔄 Tool-agnostic** — swap the memory engine or conversation tools without changing the protocol
+
+### 📦 What Gets Synced / 同步什么
+
+| Type | What | File | Example |
+|------|------|------|---------|
+| 🧠 Memory | User preferences, habits, context, conversation insights | `hermes_to_[member].md` | "Prefers concise answers, works in data science" |
+| 🛠️ Skills | MCP servers, plugins, configs, tool capabilities | `[member]_skills_[device].md` | "Has GitHub MCP, filesystem access, Python 3.12" |
+
+- **🧠 Memory** = who you are (personal, changes over time)
+- **🛠️ Skills** = what you can do (per-device, changes when tools are added/updated)
 
 ---
 
