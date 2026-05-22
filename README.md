@@ -47,27 +47,32 @@ CortexNexus 解决这个问题。
 
 ```mermaid
 graph TD
-    subgraph "🧠 Memory Engine"
-        H[Hermes / Future Engine]
+    G[("📦 Git Shared Repo")]
+
+    subgraph A["📱 Device A"]
+        direction TB
+        TA["💬 Claude Code / Gemini CLI"]
+        HA["🧠 Hermes"]
+        TA -->|"writes notes"| HA
     end
 
-    subgraph "📱 Device A"
-        CA[Claude Code + Hermes]
+    subgraph B["💻 Device B"]
+        direction TB
+        TB2["💬 Codex / OpenCode"]
+        HB["🧠 Hermes"]
+        TB2 -->|"writes notes"| HB
     end
 
-    subgraph "💻 Device B"
-        GB[Gemini CLI + Hermes]
+    subgraph C["🖥️ Device C"]
+        direction TB
+        TC["💬 Claude Code / Codex"]
+        HC["🧠 Hermes"]
+        TC -->|"writes notes"| HC
     end
 
-    subgraph "🖥️ Device C"
-        CX[Codex + Hermes]
-    end
-
-    H <-->|git sync| CA
-    H <-->|git sync| GB
-    H <-->|git sync| CX
-    CA <-->|git sync| GB
-    GB <-->|git sync| CX
+    A <-->|"git sync"| G
+    B <-->|"git sync"| G
+    C <-->|"git sync"| G
 ```
     class CA,GA,CX,OA,CB,GB,CC,GC,CD,GD,OD,CE tools
     class HL,HR engine
