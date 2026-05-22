@@ -50,29 +50,33 @@ graph TD
     G[("📦 Git Shared Repo")]
 
     subgraph A["📱 Device A"]
-        direction TB
         TA["💬 Claude Code / Gemini CLI"]
         HA["🧠 Hermes"]
-        TA -->|"writes notes"| HA
+        TA -->|writes notes| HA
     end
 
     subgraph B["💻 Device B"]
-        direction TB
-        TB2["💬 Codex / OpenCode"]
+        TB["💬 Codex / OpenCode"]
         HB["🧠 Hermes"]
-        TB2 -->|"writes notes"| HB
+        TB -->|writes notes| HB
     end
 
     subgraph C["🖥️ Device C"]
-        direction TB
         TC["💬 Claude Code / Codex"]
         HC["🧠 Hermes"]
-        TC -->|"writes notes"| HC
+        TC -->|writes notes| HC
     end
 
-    A <-->|"git sync"| G
-    B <-->|"git sync"| G
-    C <-->|"git sync"| G
+    HA <-->|git sync| G
+    HB <-->|git sync| G
+    HC <-->|git sync| G
+
+    classDef tools fill:#e3f2fd,stroke:#1565c0,color:#000
+    classDef engine fill:#fff3e0,stroke:#e65100,color:#000
+    classDef git fill:#fce4ec,stroke:#b71c1c,color:#000
+    class TA,TB,TC tools
+    class HA,HB,HC engine
+    class G git
 ```
     class CA,GA,CX,OA,CB,GB,CC,GC,CD,GD,OD,CE tools
     class HL,HR engine
