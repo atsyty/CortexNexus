@@ -46,25 +46,76 @@ CortexNexus 解决这个问题。
 ## 🏗️ Architecture / 架构
 
 ```mermaid
-graph TD
-    subgraph "📱 Device A"
-        CT1["💬 Conversation Tool<br/>Claude Code / Gemini / Codex"]
-        ME1["🧠 Memory Engine — Hermes"]
-        CT1 -->|writes notes| ME1
-        ME1 -->|provides summary| CT1
+graph LR
+    subgraph LA["📱 Home"]
+        direction TB
+        CA["Claude Code"]
+        GA["Gemini CLI"]
+    end
+    subgraph LB["💻 Office"]
+        direction TB
+        CX["Codex"]
+        OA["OpenCode"]
+    end
+    subgraph LC["🖥️ Laptop"]
+        direction TB
+        CB["Claude Code"]
+        GB["Gemini CLI"]
     end
 
-    G[("📦 GitHub Shared Repo")]
+    HL["🧠 Hermes"]
 
-    subgraph "💻 Device B"
-        CT2["💬 Conversation Tool<br/>Claude Code / Gemini / Codex"]
-        ME2["🧠 Memory Engine — Hermes"]
-        CT2 -->|writes notes| ME2
-        ME2 -->|provides summary| CT2
+    G[("📦 Git Shared Repo")]
+
+    HR["🧠 Hermes"]
+
+    subgraph RA["🖥️ Laptop"]
+        direction TB
+        CC["Claude Code"]
+        GC["Gemini CLI"]
+    end
+    subgraph RB["📱 Home"]
+        direction TB
+        CD["Claude Code"]
+        GD["Gemini CLI"]
+    end
+    subgraph RC["💻 Office"]
+        direction TB
+        OD["OpenCode"]
+        CE["Codex"]
     end
 
-    ME1 <-->|upload / download| G
-    G <-->|upload / download| ME2
+    %% Left devices ↔ Hermes
+    LA -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LA
+    LB -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LB
+    LC -->|"⬆️ upload"| HL
+    HL -->|"⬇️ download"| LC
+
+    %% Left Hermes ↔ Git
+    HL -->|"⬆️ upload"| G
+    G -->|"⬇️ download"| HL
+
+    %% Git ↔ Right Hermes
+    G -->|"⬇️ download"| HR
+    HR -->|"⬆️ upload"| G
+
+    %% Right Hermes ↔ devices
+    HR -->|"⬇️ download"| RA
+    RA -->|"⬆️ upload"| HR
+    HR -->|"⬇️ download"| RB
+    RB -->|"⬆️ upload"| HR
+    HR -->|"⬇️ download"| RC
+    RC -->|"⬆️ upload"| HR
+
+    %% Styling
+    classDef tools fill:#e3f2fd,stroke:#1565c0,color:#000
+    classDef engine fill:#fff3e0,stroke:#e65100,color:#000
+    classDef git fill:#fce4ec,stroke:#b71c1c,color:#000
+    class CA,GA,CX,OA,CB,GB,CC,GC,CD,GD,OD,CE tools
+    class HL,HR engine
+    class G git
 ```
 
 ### 🎯 Core Roles / 核心角色
