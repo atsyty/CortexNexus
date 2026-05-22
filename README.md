@@ -52,19 +52,19 @@ graph TD
     subgraph A["📱 Device A"]
         TA["💬 Claude Code / Gemini CLI"]
         HA["🧠 Hermes"]
-        TA -->|writes notes| HA
+        TA <-->|notes / summary| HA
     end
 
     subgraph B["💻 Device B"]
         TB["💬 Codex / OpenCode"]
         HB["🧠 Hermes"]
-        TB -->|writes notes| HB
+        TB <-->|notes / summary| HB
     end
 
     subgraph C["🖥️ Device C"]
         TC["💬 Claude Code / Codex"]
         HC["🧠 Hermes"]
-        TC -->|writes notes| HC
+        TC <-->|notes / summary| HC
     end
 
     HA <-->|git sync| G
